@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public float speed = 5;
-    public int facingDirection = 1; // 1 = right, -1 = left
+    public int facingDirection = 1; 
     public Rigidbody2D rb;
 
     public Animator anim;
 
-    // Update is called 50x frame
     void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal");
