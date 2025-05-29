@@ -5,13 +5,17 @@ using UnityEngine.XR;
 
 public class Enemy_Movement : MonoBehaviour
 {
+    public float speed = 4f; // Velocidade do inimigo
+    public float attackRange = 2;
+
+    public float attackCooldown = 1f; // Tempo de recarga do ataque
+
+    //separador 
+    private float attackCooldownTimer = 0f; // Temporizador para controlar o tempo de recarga do ataque
     private Rigidbody2D rb; // Referência ao Rigidbody2D do inimigo
     private Transform player;  // Referência ao Transform do jogador
     private Animator anim;
     private EnemyState enemyState;
-
-    public float speed = 4f; // Velocidade do inimigo
-
     private int facingDirection = -1; // Direção de movimento do inimigo, 1 para direita, -1 para esquerda
     void Start() // Inicializa o Rigidbody2D do inimigo
     {
@@ -22,17 +26,38 @@ public class Enemy_Movement : MonoBehaviour
 
     void Update() // Atualiza a posição do inimigo
     {
+        if (attackCooldownTimer > 0f) // Verifica se o temporizador de recarga do ataque está ativo
+        {
+            attackCooldownTimer -= Time.deltaTime; // Diminui o temporizador de recarga
+        }
+
         if (enemyState == EnemyState.Chase)
         {
-            if (player.position.x > transform.position.x && facingDirection == -1 ||
-                player.position.x < transform.position.x && facingDirection == 1)
-            {
-                FlipTool();
-            }
+            Chase(); // Chama a função Chase se o estado for Chase
+        }
+        else if (enemyState == EnemyState.Attack)
+        {
+            //AAAA
+            rb.linearVelocity = UnityEngine.Vector2.zero; // Para o movimento do inimigo quando estiver atacando
+        }
+    }
+
+    void Chase()
+    {
+        if(UnityEngine.Vector2.Distance(transform.position, player.position) <= attackRange && attackCooldownTimer <= 0)
+        {
+            attackCooldownTimer = attackCooldown; // Reseta o temporizador de recarga do ataque
+            ChangeState(EnemyState.Attack); // Altera o estado do inimigo para Attack se estiver dentro do alcance
+            return; // Sai da função Chase se estiver atacando
+        }
+        else if (player.position.x > transform.position.x && facingDirection == -1 ||
+            player.position.x < transform.position.x && facingDirection == 1)
+        {
+            FlipTool();
+        }
             
             UnityEngine.Vector2 direction = player.position - transform.position;
             rb.linearVelocity = direction.normalized * speed;
-        }
     }
 
     void FlipTool() // Inverte a direção do inimigo
@@ -42,7 +67,7 @@ public class Enemy_Movement : MonoBehaviour
     scale.x = Mathf.Abs(scale.x) * facingDirection; // Garante que só inverta a direção sem alterar o tamanho
     transform.localScale = scale; // Aplica a nova escala ao inimigo
     }
-    private void OnTriggerEnter2D(Collider2D collision) // Detecta a colisão com o jogador
+    private void OnTriggerStay2D(Collider2D collision) // Detecta a colisão com o jogador
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -64,6 +89,8 @@ public class Enemy_Movement : MonoBehaviour
             anim.SetBool("isIdle", false); // Desativa a animação de Idle
         else if (enemyState == EnemyState.Chase)
             anim.SetBool("isChase", false);
+        else if (enemyState == EnemyState.Attack)
+            anim.SetBool("isAttacking", false);
 
         enemyState = newState; // Atualiza o estado do inimigo
 
@@ -71,6 +98,8 @@ public class Enemy_Movement : MonoBehaviour
             anim.SetBool("isIdle", true); // Ativa a animação de Idle
         else if (enemyState == EnemyState.Chase)
             anim.SetBool("isChase", true); // Ativa a animação de Chase
+        else if (enemyState == EnemyState.Attack)
+            anim.SetBool("isAttacking", true);
     }
 
     private void OnTriggerExit2D(Collider2D collision) // Detecta quando o jogador sai da colisão com o inimigo
