@@ -207,12 +207,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3683055009194662810}
   anim: {fileID: 3929285007539635827}
+  enemyShootingHandler: {fileID: 0}
   pathFollowSpeed: 2
   chaseSpeed: 2
   chaseDetectionRange: 7
   attackRange: 1.5
   attackCooldown: 2
-  attackAnimationTrigger: AttackTrigger
+  isRangedUnit: 0
+  meleeAttackAnimationTrigger: AttackTrigger
+  rangedAttackAnimationTrigger: RangedAttackTrigger
 --- !u!58 &4985567727848993104
 CircleCollider2D:
   m_ObjectHideFlags: 0
