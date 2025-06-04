@@ -173,6 +173,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 0.5
+  attackPoint: {fileID: 1102643685921441812}
+  weaponRange: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!95 &6840730665973074114
 Animator:
   serializedVersion: 7
@@ -213,8 +218,8 @@ MonoBehaviour:
   pathFollowSpeed: 1
   chaseSpeed: 2
   chaseDetectionRange: 7
-  attackRange: 1.5
-  attackCooldown: 2
+  attackRange: 5
+  attackCooldown: 1
   isRangedUnit: 1
   meleeAttackAnimationTrigger: AttackTrigger
   rangedAttackAnimationTrigger: RangedAttackTrigger
@@ -252,8 +257,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.06621742}
-  m_Radius: 1.255867
+  m_Offset: {x: 2, y: 0.06621742}
+  m_Radius: 3.255867
 --- !u!114 &3011899255316227373
 MonoBehaviour:
   m_ObjectHideFlags: 0

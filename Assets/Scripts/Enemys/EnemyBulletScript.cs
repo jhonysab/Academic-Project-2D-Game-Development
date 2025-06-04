@@ -22,7 +22,7 @@ public class EnemyBulletScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, rot + 90);
         }
 
-        Destroy(gameObject, 10f); // Destruir automaticamente após 10s se não atingir o Player
+        Destroy(gameObject, 1f); // Destruir automaticamente após 1s se não atingir o Player
     }
 
     void OnTriggerEnter2D(Collider2D other)
