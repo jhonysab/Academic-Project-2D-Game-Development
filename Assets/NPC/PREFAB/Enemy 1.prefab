@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1168188780372994187
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3151284309654147481}
-  m_Layer: 6
-  m_Name: AttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3151284309654147481
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1168188780372994187}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: -0.09, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2786273160162592746}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5949584558946088743
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,13 +11,13 @@ GameObject:
   - component: {fileID: 2786273160162592746}
   - component: {fileID: 2100287821186296937}
   - component: {fileID: 3683055009194662810}
+  - component: {fileID: 750736935750155312}
   - component: {fileID: 6538342523136950948}
   - component: {fileID: 3929285007539635827}
-  - component: {fileID: 7184788070083868011}
   - component: {fileID: -3751473908387790223}
   - component: {fileID: 4985567727848993104}
-  - component: {fileID: 4138559832904420036}
-  m_Layer: 6
+  - component: {fileID: 1336396154332029642}
+  m_Layer: 10
   m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,8 +36,7 @@ Transform:
   m_LocalPosition: {x: -13.9, y: 2.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3151284309654147481}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2100287821186296937
@@ -153,47 +121,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6538342523136950948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949584558946088743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81898b441630d3e41a0b488621dff93b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 0.5
-  attackPoint: {fileID: 3151284309654147481}
-  weaponRange: 0.5
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
---- !u!95 &3929285007539635827
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949584558946088743}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d834bec11972134428471fd77d995436, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!70 &7184788070083868011
+--- !u!70 &750736935750155312
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,8 +156,44 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 1.2, y: 1.2}
   m_Direction: 0
+--- !u!114 &6538342523136950948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949584558946088743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f0d0f421305d24aa2113348bc05180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  anim: {fileID: 0}
+--- !u!95 &3929285007539635827
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949584558946088743}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d834bec11972134428471fd77d995436, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-3751473908387790223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,20 +203,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5949584558946088743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a945c8ce76bc84b96e3b327700cec4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dcc7579509ebdc4fa279e89bb0127c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 3683055009194662810}
-  anim: {fileID: 3929285007539635827}
-  enemyShootingHandler: {fileID: 0}
-  pathFollowSpeed: 2
-  chaseSpeed: 2
-  chaseDetectionRange: 7
-  attackRange: 1.5
-  attackCooldown: 2
-  isRangedUnit: 0
-  meleeAttackAnimationTrigger: AttackTrigger
-  rangedAttackAnimationTrigger: RangedAttackTrigger
+  damage: 10
 --- !u!58 &4985567727848993104
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -289,7 +243,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.9960048
---- !u!114 &4138559832904420036
+--- !u!114 &1336396154332029642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,8 +252,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5949584558946088743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8856db664f51c524fb0203d810f687d3, type: 3}
+  m_Script: {fileID: 11500000, guid: a3216f6363136254688c0212e544456c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  rb: {fileID: 0}
   anim: {fileID: 0}
+  pathFollowSpeed: 1.5
+  chaseSpeed: 4

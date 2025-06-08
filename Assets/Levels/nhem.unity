@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279c11237a97788499a84094facf3a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
   maxHealth: 5
+  currentHealth: 0
   healthUI: {fileID: 0}
 --- !u!1 &17608681
 GameObject:
@@ -19012,9 +19012,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  facingDirection: 1
   rb: {fileID: 2043881636}
   anim: {fileID: 2043881640}
+  attackKey: 113
+  attackDamage: 1
+  attackRange: 0.8
+  attackCooldown: 0.5
+  attackPoint: {fileID: 0}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerAttackAnimationTrigger: PlayerAttack
+  strongAttackKey: 114
+  strongAttackDamage: 2.5
+  strongAttackCooldown: 1.5
+  playerStrongAttackAnimationTrigger: PlayerStrongAttack
 --- !u!50 &2043881636
 Rigidbody2D:
   serializedVersion: 5
@@ -19118,9 +19130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279c11237a97788499a84094facf3a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 5
   maxHealth: 5
-  healthUI: {fileID: 1984691661}
+  currentHealth: 5
+  healthUI: {fileID: 0}
 --- !u!1 &2083132899
 GameObject:
   m_ObjectHideFlags: 0

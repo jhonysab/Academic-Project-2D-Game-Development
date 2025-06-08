@@ -10,10 +10,10 @@ public class LevelManager : MonoBehaviour
     public class SpawnRoute
     {
         public Transform spawnPoint;
-        public Transform[] path; // O caminho específico desta rota
+        public Transform[] path;
     }
 
-    public SpawnRoute[] spawnRoutes; // Array de todas as rotas
+    public SpawnRoute[] spawnRoutes;
 
     private void Awake()
     {

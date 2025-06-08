@@ -2,39 +2,43 @@ using UnityEngine;
 
 public class Player_Health : MonoBehaviour
 {
-    public float currentHealth; // vida atual do jogador
-    public float maxHealth = 5f; // Vida máxima do jogador
+    public int maxHealth = 100;
+    public int currentHealth = 100;
 
     public HealthUI healthUI;
 
-    private void Awake()
-    {
-        // Isso deve ser iniciado antes pra garantir que seja inciado antes do Start
-        currentHealth = maxHealth;
-    }
-
     private void Start()
     {
-        if (healthUI != null)
-        {
-            healthUI.UpdateHearts(currentHealth);
-        }
+        currentHealth = maxHealth;
+        UpdateUI();
     }
 
-    public void ChangeHealth(float amount)
+    public void ChangeHealth(int amount)
     {
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UpdateUI();
 
-        if (healthUI != null)
-        {
-            healthUI.UpdateHearts(currentHealth);
-        }
-
-        if (currentHealth <= 0.01f)
+        if (currentHealth <= 0)
         {
             Debug.Log("Player morreu.");
             gameObject.SetActive(false);
+        }
+    }
+    public class HealthUI : MonoBehaviour
+{
+    // Example method to update the health bar UI
+    public void UpdateBar(int currentHealth, int maxHealth)
+    {
+        // Implement your UI update logic here
+        Debug.Log($"Updating health bar: {currentHealth}/{maxHealth}");
+    }
+}
+
+    private void UpdateUI()
+    {
+        if (healthUI != null)
+        {
+            healthUI.UpdateBar(currentHealth, maxHealth);
         }
     }
 }

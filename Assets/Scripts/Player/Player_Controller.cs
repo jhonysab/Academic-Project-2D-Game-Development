@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
 
     [Header("Ataque Normal")]
-    [SerializeField] private KeyCode attackKey = KeyCode.J; // Tecla para ataque normal (ex: J)
+    [SerializeField] private KeyCode attackKey = KeyCode.Q; // Tecla para ataque normal (ex: Q)
     [SerializeField] private float attackDamage = 1f;
     [SerializeField] private float attackRange = 0.8f;
     [SerializeField] private float attackCooldown = 0.5f;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float timeSinceLastAttack = 0f;
 
     [Header("Ataque Forte")]
-    [SerializeField] private KeyCode strongAttackKey = KeyCode.K; // Tecla para ataque forte (ex: K)
+    [SerializeField] private KeyCode strongAttackKey = KeyCode.R; // Tecla para ataque forte (ex: R)
     [SerializeField] private float strongAttackDamage = 2.5f; // Dano maior para o ataque forte
     [SerializeField] private float strongAttackCooldown = 1.5f; // Cooldown maior para o ataque forte
     [SerializeField] private string playerStrongAttackAnimationTrigger = "PlayerStrongAttack"; // Trigger diferente para animação de ataque forte
