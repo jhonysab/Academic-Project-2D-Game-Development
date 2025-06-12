@@ -3,26 +3,23 @@ using UnityEngine;
 public class TowerShooting : MonoBehaviour
 {
     [Header("Configurações do Disparo")]
-    
-    // O atributo [SerializeField] faz com que variáveis privadas apareçam no Inspector do Unity.
-    // É aqui que você vai arrastar o prefab da sua flecha.
+    [Tooltip("O prefab da flecha que será disparado.")]
     [SerializeField] private GameObject projectilePrefab;
     
-    // Este é o Transform (objeto filho) de onde a flecha será criada.
+    [Tooltip("O Transform (objeto filho) de onde a flecha efetivamente sai.")]
     [SerializeField] private Transform firePoint;
 
-    // Método público que será chamado pelo script principal da torre (NpcAttackController)
-    public void PerformShoot()
+    // Método público chamado pelo NpcAttackController
+    public void PerformShoot(Quaternion shotRotation)
     {
-        // Uma verificação para garantir que tudo foi configurado antes de tentar atirar
         if (projectilePrefab != null && firePoint != null)
         {
-            // Cria uma instância do prefab do projétil na posição e rotação do firePoint
-            Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+            // Usa a posição do firePoint, mas a ROTAÇÃO que foi passada pelo NpcAttackController
+            Instantiate(projectilePrefab, firePoint.position, shotRotation);
         }
         else
         {
-            Debug.LogWarning("Prefab do projétil ou FirePoint não configurado no componente TowerShooting em " + gameObject.name);
+            Debug.LogWarning("Prefab do projétil ou FirePoint não configurado no TowerShooting.");
         }
     }
 }

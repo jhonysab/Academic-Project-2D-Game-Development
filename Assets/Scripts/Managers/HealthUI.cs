@@ -3,39 +3,20 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-    public Sprite fullHeart;
-    public Sprite halfHeart;
-    public Sprite emptyHeart;
+    public Image barraDeVida;
+    private float velocidade = 5f; // Quanto maior, mais rápida a transição
+    private float alvoFill = 1f;
 
-    private Image[] heartImages;
-
-void Awake()
-{
-    heartImages = GetComponentsInChildren<Image>();
-
-    // Filtro pras pegar as imagens, só pega o que tem heart
-    heartImages = System.Array.FindAll(heartImages, img => img.name.StartsWith("Heart"));
-}
-
-
-    public void UpdateHearts(float currentHealth)
+    void Update()
     {
-        for (int i = 0; i < heartImages.Length; i++)
+        if (barraDeVida != null)
         {
-            float heartValue = Mathf.Clamp(currentHealth - i, 0f, 1f);
-
-            if (heartValue >= 1f)
-            {
-                heartImages[i].sprite = fullHeart;
-            }
-            else if (heartValue >= 0.5f)
-            {
-                heartImages[i].sprite = halfHeart;
-            }
-            else
-            {
-                heartImages[i].sprite = emptyHeart;
-            }
+            barraDeVida.fillAmount = Mathf.Lerp(barraDeVida.fillAmount, alvoFill, Time.deltaTime * velocidade);
         }
+    }
+
+    public void UpdateBar(int vidaAtual, int vidaMaxima)
+    {
+        alvoFill = (float)vidaAtual / vidaMaxima;
     }
 }

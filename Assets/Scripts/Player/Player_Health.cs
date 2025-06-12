@@ -24,15 +24,6 @@ public class Player_Health : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    public class HealthUI : MonoBehaviour
-{
-    // Example method to update the health bar UI
-    public void UpdateBar(int currentHealth, int maxHealth)
-    {
-        // Implement your UI update logic here
-        Debug.Log($"Updating health bar: {currentHealth}/{maxHealth}");
-    }
-}
 
     private void UpdateUI()
     {

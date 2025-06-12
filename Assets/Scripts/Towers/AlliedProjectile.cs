@@ -1,26 +1,40 @@
 using UnityEngine;
 
+// [RequireComponent] garante que este objeto sempre terá um Rigidbody2D
+[RequireComponent(typeof(Rigidbody2D))]
 public class AlliedProjectile : MonoBehaviour
 {
     [Header("Configurações do Projétil")]
     [SerializeField] private float speed = 20f;
     [SerializeField] private float damage = 1f;
-    [SerializeField] private float lifetime = 3f; // Tempo em segundos para a flecha se autodestruir se não atingir nada
+    [SerializeField] private float lifetime = 3f;
+
+    private Rigidbody2D rb;
+
+    void Awake()
+    {
+        // Pega a referência do Rigidbody2D no início
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Start()
     {
-        // Agenda a destruição da flecha após 'lifetime' segundos para não poluir a cena
+        // Destrói a flecha após 'lifetime' segundos para limpar a cena
         Destroy(gameObject, lifetime);
+
+        // Define a velocidade do projétil UMA VEZ.
+        // 'transform.right' é um vetor que aponta para a direita LOCAL do objeto.
+        // Como a torre já rotacionou a flecha ao criá-la, 'transform.right' agora
+        // aponta exatamente na direção do alvo.
+        if (rb != null)
+        {
+            rb.linearVelocity = transform.right * speed;
+        }
     }
 
-    void Update()
-    {
-        // Move a flecha para a "frente" (direita no seu espaço local)
-        // A rotação correta será dada pela torre no momento do disparo
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
-    }
+    // O método Update() não é mais necessário para o movimento,
+    // pois a física está cuidando disso.
 
-    // Este método é chamado automaticamente porque o nosso Collider2D está marcado como "Is Trigger"
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Tenta pegar o script de saúde do objeto com o qual colidiu
@@ -29,10 +43,12 @@ public class AlliedProjectile : MonoBehaviour
         // Se o objeto atingido tem o script EnemyHealth, então é um inimigo
         if (enemy != null)
         {
-            // Causa dano ao inimigo
             enemy.TakeDamage(damage);
-
-            // Destrói a flecha imediatamente após atingir um inimigo
+            Destroy(gameObject); // Destrói a flecha ao atingir um inimigo
+        }
+        // Opcional: Se quiser que a flecha também seja destruída ao atingir o cenário
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Cenario")) // Substitua "Cenario" pelo nome da sua camada de cenário
+        {
             Destroy(gameObject);
         }
     }

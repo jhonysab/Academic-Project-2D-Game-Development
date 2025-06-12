@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2792341955133485548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8914647826828346869}
+  m_Layer: 10
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8914647826828346869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2792341955133485548}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.49, y: -0.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2786273160162592746}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5949584558946088743
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,7 +67,8 @@ Transform:
   m_LocalPosition: {x: -13.9, y: 2.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8914647826828346869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2100287821186296937
@@ -206,7 +238,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dcc7579509ebdc4fa279e89bb0127c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damageAmount: 1
+  attackPoint: {fileID: 8914647826828346869}
+  weaponRange: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!58 &4985567727848993104
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -255,7 +292,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3216f6363136254688c0212e544456c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  anim: {fileID: 0}
+  rb: {fileID: 3683055009194662810}
+  anim: {fileID: 3929285007539635827}
+  enemyShootingHandler: {fileID: 0}
   pathFollowSpeed: 1.5
   chaseSpeed: 4
+  chaseDetectionRange: 7
+  attackRange: 1.5
+  attackCooldown: 2
+  isRangedUnit: 0
+  meleeAttackAnimationTrigger: AttackTrigger
+  rangedAttackAnimationTrigger: RangedAttackTrigger

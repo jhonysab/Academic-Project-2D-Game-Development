@@ -1,20 +1,16 @@
 using UnityEngine;
-using System.Linq; // Usado para ordenar os inimigos por distância
+using System.Linq;
 
 public class NpcAttackController : MonoBehaviour
 {
     [Header("Referências")]
-    [Tooltip("A parte do NPC que gira para mirar (geralmente contém o sprite).")]
-    [SerializeField] private Transform rotationPoint;
-    [Tooltip("Referência ao script que lida com o disparo.")]
     [SerializeField] private TowerShooting shootingHandler;
+    private Animator anim;
+    private SpriteRenderer spriteRenderer;
 
     [Header("Atributos de Ataque")]
-    [Tooltip("O raio de detecção de inimigos a partir do centro do NPC.")]
     [SerializeField] private float attackRange = 7f;
-    [Tooltip("O tempo em segundos entre cada disparo.")]
-    [SerializeField] private float attackCooldown = 1f;
-    [Tooltip("A camada (Layer) onde os inimigos estão.")]
+    [SerializeField] private float attackCooldown = 1.5f;
     [SerializeField] private LayerMask enemyLayer;
 
     private Transform currentTarget;
@@ -22,82 +18,96 @@ public class NpcAttackController : MonoBehaviour
 
     void Awake()
     {
-        // Pega o TowerShooting se não for atribuído no Inspector
-        if (shootingHandler == null)
-        {
-            shootingHandler = GetComponent<TowerShooting>();
-        }
+        if (shootingHandler == null) shootingHandler = GetComponent<TowerShooting>();
+        anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (anim == null) Debug.LogError("Animator não encontrado no NPC!");
+        if (spriteRenderer == null) Debug.LogError("SpriteRenderer não encontrado no NPC!");
     }
 
     void Update()
     {
-        if (currentTarget == null)
-        {
-            FindNewTarget(); // Procura um novo alvo se não tiver um
-        }
-        else
-        {
-            // Se o alvo saiu do alcance ou foi destruído, procura um novo
-            if (Vector2.Distance(transform.position, currentTarget.position) > attackRange)
-            {
-                currentTarget = null;
-            }
-            else
-            {
-                // Se tem um alvo válido, mira e atira
-                AimAtTarget();
-
-                if (currentCooldownTimer <= 0f)
-                {
-                    Shoot();
-                }
-            }
-        }
-
         if (currentCooldownTimer > 0)
         {
             currentCooldownTimer -= Time.deltaTime;
+        }
+
+        FindNewTarget();
+
+        if (currentTarget != null)
+        {
+            AimAtTarget(); // Esta função agora SÓ envia informações para o Animator.
+
+            if (currentCooldownTimer <= 0f)
+            {
+                Attack();
+            }
         }
     }
 
     void FindNewTarget()
     {
-        // Cria um círculo de detecção e pega todos os inimigos dentro dele
         Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
-
-        if (enemiesInRange.Length > 0)
-        {
-            // Ordena os inimigos pela distância e pega o mais próximo como novo alvo
-            currentTarget = enemiesInRange.OrderBy(enemy => 
-                Vector2.Distance(transform.position, enemy.transform.position)
-            ).FirstOrDefault()?.transform;
-        }
+        currentTarget = enemiesInRange.OrderBy(enemy => Vector2.Distance(transform.position, enemy.transform.position))
+                                      .FirstOrDefault()?.transform;
     }
 
+    // MÉTODO MODIFICADO:
     void AimAtTarget()
     {
-        if (rotationPoint == null || currentTarget == null) return;
+        if (currentTarget == null) return;
 
-        Vector2 direction = (Vector2)currentTarget.position - (Vector2)rotationPoint.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector2 direction = (Vector2)currentTarget.position - (Vector2)transform.position;
 
-        // Aplica a rotação ao ponto de rotação para mirar no alvo
-        rotationPoint.rotation = Quaternion.Euler(0f, 0f, angle);
-    }
+        // --- LÓGICA DE ROTAÇÃO FOI REMOVIDA DAQUI ---
+        // A linha "transform.rotation = Quaternion.Euler(...);" foi deletada.
+        // O Animator agora é 100% responsável pela direção visual.
 
-    void Shoot()
-    {
-        if (shootingHandler != null)
+        // --- LÓGICA DE FLIP VISUAL (Ainda necessária para esquerda/direita) ---
+        if (direction.x < 0)
         {
-            shootingHandler.PerformShoot();
-            currentCooldownTimer = attackCooldown; // Reseta o cooldown
+            spriteRenderer.flipX = true; // Vira a imagem para a esquerda
+        }
+        else if (direction.x > 0)
+        {
+            spriteRenderer.flipX = false; // Mantém a imagem para a direita
+        }
+        
+        // --- ENVIANDO PARÂMETROS PARA O BLEND TREE ---
+        // A única tarefa desta função agora é dizer ao Animator para onde olhar.
+        if (anim != null)
+        {
+            Vector2 normalizedDirection = direction.normalized;
+            // Usamos Mathf.Abs(X) porque o flipX já cuida da direção.
+            // O Blend Tree só precisa saber se é para frente, diagonal ou para cima/baixo.
+            anim.SetFloat("DirectionX", Mathf.Abs(normalizedDirection.x));
+            anim.SetFloat("DirectionY", normalizedDirection.y);
         }
     }
 
-    // Desenha o raio de ataque no editor para fácil visualização
-    private void OnDrawGizmosSelected()
+    void Attack()
     {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        currentCooldownTimer = attackCooldown;
+        if (anim != null)
+        {
+            anim.SetTrigger("Attack");
+        }
+    }
+
+    // Este método é chamado pelo evento na sua animação
+    public void AnimationEvent_FireProjectile()
+    {
+        // Precisamos garantir que o PontoDeDisparo gire junto com a animação
+        // (que agora não gira mais). Portanto, a lógica de tiro precisa ser ajustada.
+        if (shootingHandler != null)
+        {
+            // Precisamos calcular a rotação no momento do disparo.
+            if(currentTarget != null) {
+                Vector2 direction = (Vector2)currentTarget.position - (Vector2)transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                shootingHandler.PerformShoot(Quaternion.Euler(0, 0, angle));
+            }
+        }
     }
 }

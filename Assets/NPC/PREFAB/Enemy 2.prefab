@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6840730665973074114}
   - component: {fileID: 712627863189518523}
   - component: {fileID: 2220899492292124247}
-  - component: {fileID: 7448808297863198652}
+  - component: {fileID: 826705433634822017}
   m_Layer: 10
   m_Name: Enemy 2
   m_TagString: Untagged
@@ -33,10 +33,11 @@ Transform:
   m_GameObject: {fileID: 3475691176269067517}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.655, y: -0.962, z: 0}
+  m_LocalPosition: {x: 0.39, y: -0.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6739554077761362159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7762227979035534702
@@ -167,10 +168,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3475691176269067517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81898b441630d3e41a0b488621dff93b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fdb5bb586e2b9f44b3485ce96871ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  bulletPrefab: {fileID: 642535903602663212, guid: f2e9d88f5c9fe6c44ba2d4108d6f75cf, type: 3}
+  bulletSpawnPoint: {fileID: 6739554077761362159}
 --- !u!95 &6840730665973074114
 Animator:
   serializedVersion: 7
@@ -202,13 +204,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3475691176269067517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a945c8ce76bc84b96e3b327700cec4, type: 3}
+  m_Script: {fileID: 11500000, guid: e8f0d0f421305d24aa2113348bc05180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 2545002928444955151}
-  anim: {fileID: 6840730665973074114}
-  pathFollowSpeed: 2
-  chaseSpeed: 2
+  maxHealth: 10
+  anim: {fileID: 0}
 --- !u!58 &2220899492292124247
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -245,7 +245,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.066216946}
   m_Radius: 2.4676342
---- !u!114 &7448808297863198652
+--- !u!114 &826705433634822017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,8 +254,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 3475691176269067517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8856db664f51c524fb0203d810f687d3, type: 3}
+  m_Script: {fileID: 11500000, guid: a3216f6363136254688c0212e544456c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  anim: {fileID: 0}
+  rb: {fileID: 2545002928444955151}
+  anim: {fileID: 6840730665973074114}
+  enemyShootingHandler: {fileID: 50976390017591822}
+  pathFollowSpeed: 1.5
+  chaseSpeed: 4
+  chaseDetectionRange: 7
+  attackRange: 1.5
+  attackCooldown: 2
+  isRangedUnit: 1
+  meleeAttackAnimationTrigger: AttackTrigger
+  rangedAttackAnimationTrigger: RangedAttackTrigger
+--- !u!1 &5647332395290583651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6739554077761362159}
+  m_Layer: 10
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6739554077761362159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647332395290583651}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.359, y: -0.109, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4773563856481967439}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

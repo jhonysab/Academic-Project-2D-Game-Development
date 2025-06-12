@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Castelo2_0: 8972181007035034371
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
