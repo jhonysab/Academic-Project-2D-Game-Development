@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: -3751473908387790223}
   - component: {fileID: 4985567727848993104}
   - component: {fileID: 1336396154332029642}
+  - component: {fileID: -5711220079023910813}
   m_Layer: 10
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -303,3 +304,18 @@ MonoBehaviour:
   isRangedUnit: 0
   meleeAttackAnimationTrigger: AttackTrigger
   rangedAttackAnimationTrigger: RangedAttackTrigger
+--- !u!114 &-5711220079023910813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949584558946088743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590815dd92d4c0547afdb9c464d7a2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressionDropChance: 100
+  consumablePrefab: {fileID: 1677170847082880003, guid: d6f4dacf1957efe4bad82821eda6bd87, type: 3}
+  consumableDropChance: 100

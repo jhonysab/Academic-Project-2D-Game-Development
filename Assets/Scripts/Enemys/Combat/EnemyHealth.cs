@@ -1,5 +1,5 @@
+// EnemyHealth.cs (Versão Limpa e Focada)
 using UnityEngine;
-using UnityEngine.Events; // Para usar UnityEvent se precisar de eventos mais complexos depois
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -7,19 +7,15 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth = 10f;
     private float currentHealth;
 
-    [Header("Referências (Opcional)")]
-    public Animator anim; // animação de morte para o inimigo
-
-    // evento específico para quando este inimigo morrer,
-    // evento estático do EnemySpawner.
-    // public UnityEvent onThisEnemyKilled;
+    [Header("Referências")]
+    public Animator anim;
 
     void Awake()
     {
         currentHealth = maxHealth;
         if (anim == null)
         {
-            anim = GetComponent<Animator>(); // Tenta pegar o Animator automaticamente
+            anim = GetComponent<Animator>();
         }
     }
 
@@ -27,10 +23,6 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
-
-        // adicionar um feedback visual/sonoro de dano aqui
-        // Ex: anim.SetTrigger("Hit");
-        // Debug.Log(gameObject.name + " tomou " + damageAmount + " de dano. Vida restante: " + currentHealth);
 
         if (currentHealth <= 0f)
         {
@@ -40,22 +32,21 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
-        // Debug.Log(gameObject.name + " morreu.");
+        Debug.Log(gameObject.name + " morreu.");
 
-        // Se tiver uma animação de morte:
-        // if (anim != null)
+        // ÚNICA RESPONSABILIDADE DE DROP: AVISAR O ENEMYLOOT
+        EnemyLoot loot = GetComponent<EnemyLoot>();
+        if (loot != null)
+        {
+            loot.TriggerDrops();
+        }
+        
+        // Se você ainda precisar do evento para o spawner, mantenha-o.
+        // if (EnemySpawner.onEnemyDestroy != null)
         // {
-        //     anim.SetTrigger("DeathTrigger"); // Crie um trigger "DeathTrigger" no seu Animator
+        //     EnemySpawner.onEnemyDestroy.Invoke();
         // }
 
-        // Notifica o EnemySpawner que um inimigo foi destruído (usando o evento estático existente)
-        if (EnemySpawner.onEnemyDestroy != null)
-        {
-            EnemySpawner.onEnemyDestroy.Invoke();
-        }
-
-        // onThisEnemyKilled?.Invoke(); // Se você usar o evento de instância
-
-        Destroy(gameObject); // Destroi o GameObject do inimigo
+        Destroy(gameObject);
     }
 }

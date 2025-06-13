@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99bf85788d599ce46b0d2de190c1d7fd, type: 3}
+  m_Name: EQ_Bota_2
+  m_EditorClassIdentifier: 
+  itemName: Bota de Arcadia
+  icon: {fileID: -86067622, guid: c3de5f3883fccdc468fd8732f0fc6e24, type: 3}
+  itemType: 1
+  pickupPrefab: {fileID: 3661132060759085080, guid: bd70bf0526774604b9c9acbac2ac13a2, type: 3}
+  tier: 2
+  damageBonus: 0
+  speedBonus: 10
