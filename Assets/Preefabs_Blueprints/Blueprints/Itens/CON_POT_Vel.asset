@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a01a7f1ee4f8784380e1ef290eb8dc2, type: 3}
+  m_Name: CON_POT_Vel
+  m_EditorClassIdentifier: 
+  itemName: c
+  icon: {fileID: -2000375968, guid: c3de5f3883fccdc468fd8732f0fc6e24, type: 3}
+  itemType: 4
+  pickupPrefab: {fileID: 1677170847082880003, guid: d6f4dacf1957efe4bad82821eda6bd87, type: 3}
+  healAmount: 0
+  tempDamageBonus: 0
+  tempSpeedBonus: 10
+  duration: 10

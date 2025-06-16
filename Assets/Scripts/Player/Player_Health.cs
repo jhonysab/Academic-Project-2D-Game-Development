@@ -7,7 +7,7 @@ public class Player_Health : MonoBehaviour
 
     public HealthUI healthUI; // UI da vida
 
-    // --- NOVO: ATRIBUTOS DE STATUS (Para Poções) ---
+    // --- ATRIBUTOS DE STATUS (Para Poções) ---
     public float baseDamage = 10f; // Dano base do player
     public float baseMoveSpeed = 5f; // Velocidade de movimento base do player
 
@@ -22,7 +22,7 @@ public class Player_Health : MonoBehaviour
     // Propriedades somente leitura para acessar o dano e velocidade atuais
     public float CurrentDamage { get { return baseDamage + tempDamageBonus; } }
     public float CurrentMoveSpeed { get { return baseMoveSpeed + tempSpeedBonus; } }
-    // --- FIM NOVO: ATRIBUTOS DE STATUS ---
+    // --- FIM ATRIBUTOS DE STATUS ---
 
 
     private void Start() // Inicializa a vida no Start
@@ -31,7 +31,7 @@ public class Player_Health : MonoBehaviour
         UpdateUI();
     }
 
-    private void Update() // NOVO: Método Update para gerenciar expiração de bônus
+    private void Update() // Método Update para gerenciar expiração de bônus
     {
         // Gerenciar expiração do bônus de Dano
         if (tempDamageBonus > 0 && Time.time >= damageBonusExpireTime)
@@ -46,14 +46,28 @@ public class Player_Health : MonoBehaviour
             tempSpeedBonus = 0;
             Debug.Log("Bônus de velocidade expirou. Velocidade atual: " + CurrentMoveSpeed);
         }
+    } 
+
+    // CORREÇÃO: O método UpdateUI foi movido para fora do método Update.
+    // Ele agora está no nível correto, dentro da classe Player_Health.
+    private void UpdateUI()
+    {
+        if (healthUI != null)
+        {
+            // A linha abaixo presume que seu script HealthUI.cs tem um método chamado SetHealth.
+            // Se o nome for diferente (como UpdateBar ou UpdateHearts), ajuste aqui.
+            healthUI.UpdateBar(currentHealth, maxHealth); // Na sua última versão, o método era UpdateBar(int, int)
+        }
+        else
+        {
+             Debug.LogWarning("HealthUI não atribuído no Inspector do Player_Health. A UI da vida não será atualizada.");
+        }
     }
 
     public void ChangeHealth(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        
         Debug.Log("Vida alterada em " + amount + ". Vida atual: " + currentHealth);
-        
         UpdateUI();
 
         if (currentHealth <= 0)
@@ -62,45 +76,19 @@ public class Player_Health : MonoBehaviour
             gameObject.SetActive(false); // Desativa o jogador
         }
     }
-    
-    // --- NOVO: Métodos para aplicar bônus de dano e velocidade (chamados pelos scripts de poção) ---
-    // Estes métodos serão chamados por DamageBoostItem.cs e SpeedBoostItem.cs
+
+    // --- MÉTODOS DE BÔNUS ---
     public void ApplyDamageBoost(float amount, float duration)
     {
         tempDamageBonus = amount;
-        damageBonusExpireTime = Time.time + duration; 
+        damageBonusExpireTime = Time.time + duration;
         Debug.Log($"Aplicado bônus de dano de {amount} por {duration}s. Dano atual: " + CurrentDamage);
     }
 
     public void ApplySpeedBoost(float amount, float duration)
     {
         tempSpeedBonus = amount;
-        speedBonusExpireTime = Time.time + duration; 
+        speedBonusExpireTime = Time.time + duration;
         Debug.Log($"Aplicado bônus de velocidade de {amount} por {duration}s. Velocidade atual: " + CurrentMoveSpeed);
-    }
-    // --- FIM NOVO: MÉTODOS DE BÔNUS ---
-
-    // --- HealthUI (Classe aninhada, como estava em sua base) ---
-    // ATENÇÃO: Se esta classe aninhada causa problemas de atribuição no Inspector,
-    // a solução é movê-la para um arquivo HealthUI.cs SEPARADO.
-    public class HealthUI : MonoBehaviour
-    {
-        public void UpdateBar(int currentHealth, int maxHealth)
-        {
-            Debug.Log($"Updating health bar: {currentHealth}/{maxHealth}");
-            // Implemente sua lógica de atualização de barra de vida aqui
-        }
-    }
-
-    private void UpdateUI()
-    {
-        if (healthUI != null)
-        {
-            healthUI.UpdateBar(currentHealth, maxHealth);
-        }
-        else
-        {
-            Debug.LogWarning("HealthUI não atribuído no Inspector do Player_Health. A UI da vida não será atualizada.");
-        }
     }
 }

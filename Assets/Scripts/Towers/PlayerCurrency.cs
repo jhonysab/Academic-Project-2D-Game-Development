@@ -10,7 +10,7 @@ public class PlayerCurrency : MonoBehaviour
 
     [Header("Referências da UI")]
     public TMP_Text textoMoedaUI; // Arraste seu objeto "TextoMoeda" aqui no Inspector
-
+    
     void Awake()
     {
         if (main == null) { main = this; }

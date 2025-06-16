@@ -1,31 +1,34 @@
 fileFormatVersion: 2
-guid: c4e764d12d36ea34ba4eb60d1c513f27
+guid: a9560d5a31815f34188fe5a24ddf31fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3466882613496013670
-    second: Idle Working_0
+      213: -1005624978479446606
+    second: BLACKSMITH_0
   - first:
-      213: 3030518280576812534
-    second: Idle Working_1
+      213: 1566904307402070021
+    second: BLACKSMITH_1
   - first:
-      213: 5378836116404997597
-    second: Idle Working_2
+      213: 4278709191899419306
+    second: BLACKSMITH_2
   - first:
-      213: -4509174609631646069
-    second: Idle Working_3
+      213: -3723594856359437016
+    second: BLACKSMITH_3
   - first:
-      213: 3333829209425231497
-    second: Idle Working_4
+      213: -7502798366097647797
+    second: BLACKSMITH_4
   - first:
-      213: -5707925233273316402
-    second: Idle Working_5
+      213: 6778133680399479520
+    second: BLACKSMITH_5
   - first:
-      213: -854218373864689710
-    second: Idle Working_6
+      213: 2191174510042027221
+    second: BLACKSMITH_6
   - first:
-      213: 1889750867736922003
-    second: Idle Working_7
+      213: 5885357619316290615
+    second: BLACKSMITH_7
+  - first:
+      213: -6507413402349935435
+    second: BLACKSMITH_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,13 +124,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle Working_0
+      name: BLACKSMITH_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 1
-        width: 15
-        height: 27
+        x: 9
+        y: 17
+        width: 66
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 663686f5e57dc1030800000000000000
-      internalID: 3466882613496013670
+      spriteID: 2b5097cf86d4b02f0800000000000000
+      internalID: -1005624978479446606
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle Working_1
+      name: BLACKSMITH_2
       rect:
         serializedVersion: 2
-        x: 41
-        y: 1
-        width: 14
-        height: 28
+        x: 105
+        y: 17
+        width: 65
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f5cb1fd1509e0a20800000000000000
-      internalID: 3030518280576812534
+      spriteID: aa21d582757016b30800000000000000
+      internalID: 4278709191899419306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle Working_2
+      name: BLACKSMITH_4
       rect:
         serializedVersion: 2
-        x: 70
-        y: 1
-        width: 17
-        height: 28
+        x: 201
+        y: 17
+        width: 67
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ddd8c5713f675aa40800000000000000
-      internalID: 5378836116404997597
+      spriteID: b475e5733a4b0e790800000000000000
+      internalID: -7502798366097647797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle Working_3
+      name: BLACKSMITH_5
       rect:
         serializedVersion: 2
-        x: 103
-        y: 1
-        width: 16
-        height: 28
+        x: 297
+        y: 17
+        width: 67
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b8ee1ba45913c61c0800000000000000
-      internalID: -4509174609631646069
+      spriteID: 0e272549ba4c01e50800000000000000
+      internalID: 6778133680399479520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle Working_4
+      name: BLACKSMITH_6
       rect:
         serializedVersion: 2
-        x: 137
-        y: 1
-        width: 14
-        height: 28
+        x: 393
+        y: 17
+        width: 67
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 98ebc99a004244e20800000000000000
-      internalID: 3333829209425231497
+      spriteID: 5d412f78b9d986e10800000000000000
+      internalID: 2191174510042027221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle Working_5
+      name: BLACKSMITH_7
       rect:
         serializedVersion: 2
-        x: 167
-        y: 1
-        width: 16
-        height: 27
+        x: 489
+        y: 17
+        width: 67
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,20 +249,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ecb51420e3069c0b0800000000000000
-      internalID: -5707925233273316402
+      spriteID: 7347c73a29dfca150800000000000000
+      internalID: 5885357619316290615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle Working_6
+      name: BLACKSMITH_8
       rect:
         serializedVersion: 2
-        x: 196
-        y: 1
-        width: 19
-        height: 27
+        x: 585
+        y: 17
+        width: 67
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,30 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2dfee213ae43524f0800000000000000
-      internalID: -854218373864689710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle Working_7
-      rect:
-        serializedVersion: 2
-        x: 226
-        y: 1
-        width: 23
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3970271e66eb93a10800000000000000
-      internalID: 1889750867736922003
+      spriteID: 5b4e0520df501b5a0800000000000000
+      internalID: -6507413402349935435
       vertices: []
       indices: 
       edges: []
@@ -300,7 +281,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2bd040d9e313ac9478d0a02ea86c699e
+    spriteID: d00c61cbbad706148b793d7b4b2e6ad9
     internalID: 0
     vertices: []
     indices: 
@@ -310,14 +291,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Idle Working_0: 3466882613496013670
-      Idle Working_1: 3030518280576812534
-      Idle Working_2: 5378836116404997597
-      Idle Working_3: -4509174609631646069
-      Idle Working_4: 3333829209425231497
-      Idle Working_5: -5707925233273316402
-      Idle Working_6: -854218373864689710
-      Idle Working_7: 1889750867736922003
+      BLACKSMITH_0: -1005624978479446606
+      BLACKSMITH_1: 1566904307402070021
+      BLACKSMITH_2: 4278709191899419306
+      BLACKSMITH_3: -3723594856359437016
+      BLACKSMITH_4: -7502798366097647797
+      BLACKSMITH_5: 6778133680399479520
+      BLACKSMITH_6: 2191174510042027221
+      BLACKSMITH_7: 5885357619316290615
+      BLACKSMITH_8: -6507413402349935435
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
