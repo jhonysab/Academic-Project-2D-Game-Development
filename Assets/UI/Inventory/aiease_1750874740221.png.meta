@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: aaad228df1c178d41b6a4376d6cb1662
+guid: bfe4874296fc5b541938dd4e773b1725
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7560322501904242904
-    second: portal1_frame_1_0
-  - first:
-      213: -7407086495808656275
-    second: portal1_frame_1_1
-  - first:
-      213: -8187234428448845070
-    second: portal1_frame_1_2
-  - first:
-      213: 7298108051209520765
-    second: portal1_frame_1_3
+      213: 4635963927082707495
+    second: aiease_1750874740221_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 36
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: portal1_frame_1_0
+      name: aiease_1750874740221_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 10
-        width: 60
-        height: 53
+        x: 219
+        y: 218
+        width: 573
+        height: 574
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d815695249abe860800000000000000
-      internalID: 7560322501904242904
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portal1_frame_1_1
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 45
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d6c6bb4931eb43990800000000000000
-      internalID: -7407086495808656275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portal1_frame_1_2
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 51
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f255774aa9116e80800000000000000
-      internalID: -8187234428448845070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portal1_frame_1_3
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 1
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7603c40b96184560800000000000000
-      internalID: 7298108051209520765
+      spriteID: 72a2a4911a0465040800000000000000
+      internalID: 4635963927082707495
       vertices: []
       indices: 
       edges: []
@@ -209,11 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      portal1_frame_1_0: 7560322501904242904
-      portal1_frame_1_1: -7407086495808656275
-      portal1_frame_1_2: -8187234428448845070
-      portal1_frame_1_3: 7298108051209520765
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
