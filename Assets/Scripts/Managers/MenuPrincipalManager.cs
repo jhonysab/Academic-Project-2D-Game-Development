@@ -7,7 +7,7 @@ public class MenuPrincipalManager : MonoBehaviour
     public void IniciarJogo()
     {
         // Lembre-se de substituir "NomeDaSuaCenaDeJogo" pelo nome real!
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Cutscene 1");
     }
 
     // Ação para o botão de Opções

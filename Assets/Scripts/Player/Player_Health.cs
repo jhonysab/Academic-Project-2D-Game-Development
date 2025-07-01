@@ -1,3 +1,4 @@
+// Arquivo: Player_Health.cs (VERSÃO CORRIGIDA)
 using UnityEngine;
 
 public class Player_Health : MonoBehaviour
@@ -8,59 +9,50 @@ public class Player_Health : MonoBehaviour
     public HealthUI healthUI; // UI da vida
 
     // --- ATRIBUTOS DE STATUS (Para Poções) ---
-    public float baseDamage = 10f; // Dano base do player
-    public float baseMoveSpeed = 5f; // Velocidade de movimento base do player
+    public float baseDamage = 10f; 
+    public float baseMoveSpeed = 5f; 
 
-    // Bônus temporários que serão adicionados/removidos das bases
     private float tempDamageBonus = 0f;
     private float tempSpeedBonus = 0f;
 
-    // Tempos de expiração para os bônus temporários
     private float damageBonusExpireTime = 0f;
     private float speedBonusExpireTime = 0f;
 
-    // Propriedades somente leitura para acessar o dano e velocidade atuais
     public float CurrentDamage { get { return baseDamage + tempDamageBonus; } }
     public float CurrentMoveSpeed { get { return baseMoveSpeed + tempSpeedBonus; } }
     // --- FIM ATRIBUTOS DE STATUS ---
 
 
-    private void Start() // Inicializa a vida no Start
+    private void Start() 
     {
         currentHealth = maxHealth;
         UpdateUI();
     }
 
-    private void Update() // Método Update para gerenciar expiração de bônus
+    private void Update() 
     {
-        // Gerenciar expiração do bônus de Dano
         if (tempDamageBonus > 0 && Time.time >= damageBonusExpireTime)
         {
             tempDamageBonus = 0;
             Debug.Log("Bônus de dano expirou. Dano atual: " + CurrentDamage);
         }
 
-        // Gerenciar expiração do bônus de Velocidade
         if (tempSpeedBonus > 0 && Time.time >= speedBonusExpireTime)
         {
             tempSpeedBonus = 0;
             Debug.Log("Bônus de velocidade expirou. Velocidade atual: " + CurrentMoveSpeed);
         }
-    } 
+    }
 
-    // CORREÇÃO: O método UpdateUI foi movido para fora do método Update.
-    // Ele agora está no nível correto, dentro da classe Player_Health.
     private void UpdateUI()
     {
         if (healthUI != null)
         {
-            // A linha abaixo presume que seu script HealthUI.cs tem um método chamado SetHealth.
-            // Se o nome for diferente (como UpdateBar ou UpdateHearts), ajuste aqui.
-            healthUI.UpdateBar(currentHealth, maxHealth); // Na sua última versão, o método era UpdateBar(int, int)
+            healthUI.UpdateBar(currentHealth, maxHealth);
         }
         else
         {
-             Debug.LogWarning("HealthUI não atribuído no Inspector do Player_Health. A UI da vida não será atualizada.");
+            Debug.LogWarning("HealthUI não atribuído no Inspector do Player_Health. A UI da vida não será atualizada.");
         }
     }
 
@@ -70,10 +62,12 @@ public class Player_Health : MonoBehaviour
         Debug.Log("Vida alterada em " + amount + ". Vida atual: " + currentHealth);
         UpdateUI();
 
+        // --- ALTERAÇÃO PRINCIPAL AQUI ---
+        // Agora, em vez de apenas desativar o objeto, nós chamamos a função Morrer()
+        // que centraliza toda a lógica de morte.
         if (currentHealth <= 0)
         {
-            Debug.Log("Player morreu.");
-            gameObject.SetActive(false); // Desativa o jogador
+            Morrer();
         }
     }
 
@@ -90,5 +84,18 @@ public class Player_Health : MonoBehaviour
         tempSpeedBonus = amount;
         speedBonusExpireTime = Time.time + duration;
         Debug.Log($"Aplicado bônus de velocidade de {amount} por {duration}s. Velocidade atual: " + CurrentMoveSpeed);
+    }
+    
+    // Esta função agora será chamada corretamente.
+    private void Morrer()
+    {
+        Debug.Log("O Player morreu! Chamando a tela de Game Over...");
+
+        // Usando o singleton 'main', chamamos a função pública do LevelManager.
+        LevelManager.main.TriggerGameOver();
+
+        // Desativa o objeto do player para que ele não possa mais se mover
+        // ou ser atingido após morrer.
+        gameObject.SetActive(false); 
     }
 }

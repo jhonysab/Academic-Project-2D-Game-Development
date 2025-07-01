@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; // <-- LINHA ESSENCIAL
 
 public class LevelManagerSimple : MonoBehaviour
 {
@@ -13,12 +13,12 @@ public class LevelManagerSimple : MonoBehaviour
         else
         {
             Debug.Log("Último nível! Voltando ao menu...");
-            SceneManager.LoadScene(0); // volta pro menu
+            SceneManager.LoadScene(0); // Volta para a cena de índice 0 (menu)
         }
     }
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu"); // Carrega a cena pelo nome "Menu"
     }
 }

@@ -42,9 +42,7 @@ public class PlayerLivesManager : MonoBehaviour
 
         if (vidasAtuais <= 0)
         {
-            Debug.Log("GAME OVER - A base foi destruída.");
-            // Aqui você pode desativar o jogo, mostrar menu, etc.
-            Time.timeScale = 0f; // Pausa o jogo
+            Die(); 
         }
     }
 
@@ -55,4 +53,19 @@ public class PlayerLivesManager : MonoBehaviour
             vidasTexto.text = vidasAtuais.ToString();
         }
     }
+
+private void Die() 
+{
+    // ... sua outra lógica, como tocar um som de explosão, etc. ...
+
+    // A chamada que inicia o fim de jogo:
+    if (LevelManager.main != null)
+    {
+        // Ele avisa o Diretor do Nível para iniciar o processo de Game Over.
+        LevelManager.main.TriggerGameOver();
+    }
+
+    // Desativa a base para que ela pare de funcionar
+    gameObject.SetActive(false); 
+}
 }

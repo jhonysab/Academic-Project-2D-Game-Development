@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4878795974860087233}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,8 @@ GameObject:
   - component: {fileID: 2022518884813435910}
   - component: {fileID: 3568339500864238555}
   - component: {fileID: 4694164764538481556}
-  m_Layer: 0
+  - component: {fileID: 8835745927149437861}
+  m_Layer: 10
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f0d0f421305d24aa2113348bc05180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 20
   anim: {fileID: 0}
 --- !u!114 &6724539957739197151
 MonoBehaviour:
@@ -152,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dcc7579509ebdc4fa279e89bb0127c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 5
   attackPoint: {fileID: 4878795974860087233}
   weaponRange: 0.5
   playerLayer:
@@ -173,9 +174,9 @@ MonoBehaviour:
   rb: {fileID: 2807861902285334593}
   anim: {fileID: 2022518884813435910}
   enemyCombat: {fileID: 6724539957739197151}
-  pathFollowSpeed: 1
-  chaseSpeed: 3
-  chaseDetectionRange: 7
+  pathFollowSpeed: 0.5
+  chaseSpeed: 2
+  chaseDetectionRange: 5
   attackRange: 2
   attackCooldown: 1
   attackAnimationTrigger: BossAttack
@@ -302,3 +303,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.7, y: 1.025}
   m_Direction: 0
+--- !u!114 &8835745927149437861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189990270330799076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590815dd92d4c0547afdb9c464d7a2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressionDropChance: 100
+  consumablePrefab: {fileID: 745158087769598064, guid: 59ad6746dd9340140ad17a7f33678be8, type: 3}
+  consumableDropChance: 100

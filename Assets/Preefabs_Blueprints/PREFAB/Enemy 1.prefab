@@ -317,5 +317,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressionDropChance: 100
-  consumablePrefab: {fileID: 1677170847082880003, guid: d6f4dacf1957efe4bad82821eda6bd87, type: 3}
+  consumablePrefab: {fileID: 3806613529912277681, guid: 95ce9f9520e175c43947940b9c2ce1f0, type: 3}
   consumableDropChance: 100

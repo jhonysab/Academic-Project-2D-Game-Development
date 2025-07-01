@@ -302,10 +302,7 @@ public class EnemyCombinedMovement : MonoBehaviour
                 }
 
                 // 2. Encerra a contagem da onda
-                if (EnemySpawner.onEnemyDestroy != null)
-                {
-                    EnemySpawner.onEnemyDestroy.Invoke();
-                }
+                FindFirstObjectByType<EnemySpawner>().OnEnemyDied();
 
                 // 3. Destroi o inimigo
                 Destroy(gameObject);

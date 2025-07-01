@@ -30,23 +30,31 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+private void Die()
+{
+    Debug.Log(gameObject.name + " morreu.");
+
+    // Sua lógica de drop de item (continua exatamente igual)
+    EnemyLoot loot = GetComponent<EnemyLoot>();
+    if (loot != null)
     {
-        Debug.Log(gameObject.name + " morreu.");
-
-        // ÚNICA RESPONSABILIDADE DE DROP: AVISAR O ENEMYLOOT
-        EnemyLoot loot = GetComponent<EnemyLoot>();
-        if (loot != null)
-        {
-            loot.TriggerDrops();
-        }
-        
-        // Se você ainda precisar do evento para o spawner, mantenha-o.
-        // if (EnemySpawner.onEnemyDestroy != null)
-        // {
-        //     EnemySpawner.onEnemyDestroy.Invoke();
-        // }
-
-        Destroy(gameObject);
+        loot.TriggerDrops();
     }
+
+    // --- A LINHA DE CÓDIGO QUE ADICIONAMOS ---
+    // Encontra o EnemySpawner na cena e avisa que este inimigo morreu.
+    // Garante que o spawner existe para não dar erro.
+    EnemySpawner spawner = FindFirstObjectByType<EnemySpawner>();
+    if (spawner != null)
+    {
+        spawner.OnEnemyDied();
+    }
+    else
+    {
+        Debug.LogWarning("EnemySpawner não encontrado na cena. Não foi possível notificar a morte do inimigo.");
+    }
+    
+    // O objeto só é destruído DEPOIS de avisar todo mundo.
+    Destroy(gameObject);
+}
 }
