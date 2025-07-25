@@ -40,7 +40,3 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 * Se você quer apenas jogar, pode ir diretamente na **pasta `Build`** e executar o jogo por lá!
 > [!IMPORTANT]
 > <b>Atenção o jogo foi buildado apenas para rodar em sistemas operacionais Windows.</b>
-
-## 📝 Licença
-
-Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
