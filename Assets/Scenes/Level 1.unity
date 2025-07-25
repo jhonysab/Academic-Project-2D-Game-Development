@@ -32221,7 +32221,7 @@ MonoBehaviour:
     - {fileID: 462144109}
   waveBarManage: {fileID: 985250896}
   countdownText: {fileID: 1326486095}
-  countdownTime: 20
+  countdownTime: 60
   GameOver: GameOver
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
